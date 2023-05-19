@@ -123,12 +123,20 @@ const characters = [
 const getHouses = (arr) => {
   let houses = [];
   // Solution code here...
-  for (let i =0; i < arr.length; i++) {
-    houses.push(arr[i].house);
-  }
+  arr.forEach(obj => {
+   if (Object.keys(obj).length === 4){
+    houses.push(Object.values(obj)[3])
+   }
+   else{
+    houses.push(Object.values(obj)[2])
+   }
+  });
   return houses;
 };
 
+// for (let i =0; i < arr.length; i++) {
+//   houses.push(arr[i].house);
+// }
 /*------------------------------------------------------------------------------------------------
 CHALLENGE 6
 
