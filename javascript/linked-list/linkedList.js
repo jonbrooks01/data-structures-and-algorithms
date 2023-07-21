@@ -93,22 +93,65 @@ class LinkedList {
 
   // insert before
   // arguments: value, new value
-  // adds a new node with the given new value immediately before teh first node that has the value specified
+  // adds a new node with the given new value immediately before the first node that has the value specified
   // check the head to see if it matches our value, if it does insert()
   // loop through the list, check current.next.value to see if it is the value we are looking for
   // when we find that value insert the new node (temp is current.next, current.next is new node, new node.next is temp)
   // return the list
+  insertBefore(value, newValue) {
+    const newNode = new Node(newValue);
+
+    if (!this.head) this.head = newNode
+
+    if (this.head.value === value) {
+      newNode.next = this.head;
+      this.head = newNode;
+      return;
+    }
+
+    let current = this.head;
+    while (current.next !== null) {
+      if (current.next.value === value) {
+        newNode.next = current.next;
+        current.next = newNode;
+        return;
+      } else {
+      current = current.next;
+      }
+    }
+
+    }
+    //insert after
+    // arguments: value, new value
+    //adds a new node with the given new value immediately after the first node that has the value specified
+    // assign head to current
+    // check current.value to see if it matches the argument
+    //temp is the current.next
+    // current.next is the new node
+    // new node.next is temp
+    // return list
+  insertAfter( value, newValue) {
+    const newNode = new Node(newValue);
+
+    if (!this.head) this.head = newNode;
 
 
-  //insert after
-  // arguments: value, new value
-  //adds a new node with the given new value immediately after the first node that has the value specified
-  // assign head to current
-  // check current.value to see if it matches the argument
-  //temp is the current.next
-  // current.next is the new node
-  // new node.next is temp
-  // return list
-}
+      let current = this.head;
+      while(current !== null) {
+        if (current.value === value) {
+          const temp = current.next;
+          current.next = newNode;
+          newNode.next = temp;
+          return;
+        } else {
+        current = current.next;
+        }
+      };
+
+  };
+  };
+
+
+
 
 module.exports = { LinkedList, Node };
