@@ -36,7 +36,7 @@ describe("linked list test suite", () => {
       "{ 1 } -> { a } -> { b } -> { c } -> NULL"
       );
     });
-  test("it can insert a node at the end of the list", () => {
+  test("append can insert a node at the end of the list", () => {
     // insert a node then check that the last node of the list matches the value
     // insert it
     // traverse the list
@@ -45,7 +45,35 @@ describe("linked list test suite", () => {
     testLL.append("d")
     expect(testLL.toString()).toEqual("{ a } -> { b } -> { c } -> { d } -> NULL");
   });
+  test("can successfully insert a node before a node located i the middle of the linked list", () => {
+    const testLLBefore = new LinkedList(dummyLL);
+    testLLBefore.insertBefore("b", "1");
+    expect(testLLBefore.toString()).toEqual("{ a } -> { 1 } -> { b } -> { c } -> { d } -> NULL")
+  })
+  test("Can successfully insert after a node in the middle of the linked list", () => {
+    const testLLAfter = new LinkedList(dummyLL);
+    testLLAfter.insertAfter("c", 2);
+    expect(testLLAfter.toString()).toBe("{ a } -> { 1 } -> { b } -> { c } -> { 2 } -> { d } -> NULL");
+  });
+  test("Can successfully insert a node before the first node of a linked list", () => {
+    const testLLBeforeNode = new LinkedList(dummyLL);
+    testLLBeforeNode.insertBefore("a", "0");
+    expect(testLLBeforeNode.toString()).toBe("{ 0 } -> { a } -> { 1 } -> { b } -> { c } -> { 2 } -> { d } -> NULL")
+  });
 
+  test("Can successfully add multiple nodes to the end of a linked list", () => {
+    const testMutiNode = new LinkedList(dummyLL);
+    testMutiNode.append("z");
+    testMutiNode.append("y");
+    testMutiNode.append("r");
+    expect(testMutiNode.toString()).toBe("{ a } -> { 1 } -> { b } -> { c } -> { 2 } -> { d } -> { z } -> { y } -> { r } -> NULL")
+  })
+
+  test("Can successfully insert a node after the last node of the linked list", () => {
+    const testAfterEnd = new LinkedList(dummyLL);
+    testAfterEnd.insertAfter("r", "p");
+    expect(testAfterEnd.toString()).toBe("{ a } -> { 1 } -> { b } -> { c } -> { 2 } -> { d } -> { z } -> { y } -> { r } -> { p } -> NULL")
+  })
   });
 
 
