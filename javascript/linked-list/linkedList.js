@@ -47,13 +47,13 @@ class LinkedList {
   includes(value) {
     let current = this.head;
     while (current) {
-      if(current.value === value) {
-      return true;
+      if (current.value === value) {
+        return true;
       }
       current = current.next;
     }
     return false;
-  };
+  }
   // toString
   // "{ a } -> { b } -> { c } -> NULL"
   toString() {
@@ -85,11 +85,10 @@ class LinkedList {
       let current = this.head;
       while (current.next !== null) {
         current = current.next;
-      };
-      current.next = newNode
-    };
-  };
-
+      }
+      current.next = newNode;
+    }
+  }
 
   // insert before
   // arguments: value, new value
@@ -101,7 +100,7 @@ class LinkedList {
   insertBefore(value, newValue) {
     const newNode = new Node(newValue);
 
-    if (!this.head) this.head = newNode
+    if (!this.head) this.head = newNode;
 
     if (this.head.value === value) {
       newNode.next = this.head;
@@ -116,42 +115,85 @@ class LinkedList {
         current.next = newNode;
         return;
       } else {
-      current = current.next;
+        current = current.next;
       }
     }
-
-    }
-    //insert after
-    // arguments: value, new value
-    //adds a new node with the given new value immediately after the first node that has the value specified
-    // assign head to current
-    // check current.value to see if it matches the argument
-    //temp is the current.next
-    // current.next is the new node
-    // new node.next is temp
-    // return list
-  insertAfter( value, newValue) {
+  }
+  //insert after
+  // arguments: value, new value
+  //adds a new node with the given new value immediately after the first node that has the value specified
+  // assign head to current
+  // check current.value to see if it matches the argument
+  //temp is the current.next
+  // current.next is the new node
+  // new node.next is temp
+  // return list
+  insertAfter(value, newValue) {
     const newNode = new Node(newValue);
 
     if (!this.head) this.head = newNode;
 
-
-      let current = this.head;
-      while(current !== null) {
-        if (current.value === value) {
-          const temp = current.next;
-          current.next = newNode;
-          newNode.next = temp;
-          return;
-        } else {
+    let current = this.head;
+    while (current !== null) {
+      if (current.value === value) {
+        const temp = current.next;
+        current.next = newNode;
+        newNode.next = temp;
+        return;
+      } else {
         current = current.next;
-        }
-      };
+      }
+    }
+  }
 
-  };
-  };
+  // k-th value
+  // takes in a value to find starting from the end traversing until it finds that number.
+  // once number
+  kthFromEnd(k) {
+    if (!this.head || k < 0) {
+      return null;
+    }
 
+    let fastPass = this.head;
+    let slowPass = this.head;
 
+    for (let i = 0; i < k; i++) {
+      if (!fastPass.next) {
+        return null;
+      }
+      fastPass = fastPass.next;
+    }
 
+    while (fastPass.next) {
+      fastPass = fastPass.next;
+      slowPass = slowPass.next;
+    }
+    return slowPass.value;
+  }
+}
 
 module.exports = { LinkedList, Node };
+
+// kthFromEnd(k) {
+//   if (!this.head || k < 0) {
+//     return null;
+//   }
+
+//   let length = 0;
+//   let current = this.head;
+//   while (current) {
+//     length++;
+//     current = current.next;
+//   }
+
+//   if (k >= length) {
+//     return null;
+//   }
+
+//   let traverse = length - k - 1;
+//   current = this.head;
+//   for (let i = 0; i < traverse; i++) {
+//     current = current.next;
+//   }
+//   return current.value;
+// }
