@@ -1,6 +1,8 @@
 "use strict";
 
-const { LinkedList } = require("../linkedList.js");
+
+const { LinkedList, zipLists } = require("../linkedList.js");
+
 // "{ a } -> { b } -> { c } -> NULL"
 const dummyLL = {
   value: "a",
@@ -16,6 +18,63 @@ const newDummyLL = {
   value: 12,
   next: null,
 };
+
+const dummyLL1 = {
+  value: "3",
+  next: {
+    value: "8",
+    next: {
+      value: "4",
+      next: null,
+    },
+  },
+};
+
+const dummyLL2 = {
+  value: "7",
+  next: {
+    value: "1",
+    next: {
+      value: "5",
+      next: null,
+    },
+  },
+};
+
+const dummyLL3 = {
+  value: "2",
+  next: {
+    value: "4",
+    next: {
+      value: "8",
+      next: {
+        value: "9",
+        next: null,
+      },
+    },
+  },
+};
+
+function createLinkedListFromObject(dummyLL) {
+  class ListNode {
+    constructor(value, next = null) {
+      this.value = value;
+      this.next = next;
+    }
+  }
+
+  let head = new ListNode(dummyLL.value);
+  let current = head;
+  let dummyLLNext = dummyLL.next;
+
+  while (dummyLLNext !== null) {
+    current.next = new ListNode(dummyLLNext.value);
+    current = current.next;
+    dummyLLNext = dummyLLNext.next;
+  }
+
+  return new LinkedList(head);
+}
 
 describe("linked list test suite", () => {
   test("Can successfully instantiate an empty linked list", () => {
@@ -88,6 +147,7 @@ describe("linked list test suite", () => {
       "{ a } -> { 1 } -> { b } -> { c } -> { 2 } -> { d } -> { z } -> { y } -> { r } -> { p } -> NULL"
     );
   });
+
   test("Should return null where k is greater than the length of the linked list", () => {
     const testLongerThenList = new LinkedList(dummyLL);
     expect(testLongerThenList.kthFromEnd(10)).toBeNull();
@@ -107,6 +167,69 @@ describe("linked list test suite", () => {
   test("Should return the correct value of k in the middle of the list", () => {
     const middleNum = new LinkedList(dummyLL);
     expect(middleNum.kthFromEnd(5)).toBe(2);
+
+  test("Test with two empty linked lists", () => {
+    const list1 = new LinkedList();
+    const list2 = new LinkedList();
+    expect(zipLists(list1, list2).head).toBe(null);
+  });
+  test("Test with one empty linked list and one non-empty linked list", () => {
+    const list1 = new LinkedList();
+    const list2 = new LinkedList(dummyLL);
+    const results = zipLists(list1, list2);
+    expect(results.head).toBe(list2.head);
+  });
+  test("Test with two linked lists of the same length", () => {
+    const list1 = createLinkedListFromObject(dummyLL1);
+    const list2 = createLinkedListFromObject(dummyLL2);
+    const results = zipLists(list1, list2);
+    const expected = createLinkedListFromObject({
+      value: "3",
+      next: {
+        value: "7",
+        next: {
+          value: "8",
+          next: {
+            value: "1",
+            next: {
+              value: "4",
+              next: {
+                value: "5",
+                next: null,
+              },
+            },
+          },
+        },
+      },
+    });
+    expect(results.head).toEqual(expected.head);
+  });
+  test("Test with two linked list of different lengths", () => {
+    const list1 = createLinkedListFromObject(dummyLL3);
+    const list2 = createLinkedListFromObject(dummyLL2);
+    const results = zipLists(list1, list2);
+    const expected = createLinkedListFromObject({
+      value: "2",
+      next: {
+        value: "7",
+        next: {
+          value: "4",
+          next: {
+            value: "1",
+            next: {
+              value: "8",
+              next: {
+                value: "5",
+                next: {
+                  value: "9",
+                  next: null,
+                },
+              },
+            },
+          },
+        },
+      },
+    });
   });
 });
 
