@@ -5,6 +5,7 @@ The challenge was to take two linked lists and combine them alternating the node
 ## Whiteboard Process
 
 ![WhiteBoard Image](./whiteboard.png)
-<!-- ![WhiteBoard Image](./whiteBoard1.png) -->
+![whiteBoard Image](./whiteboard1.png)
+
 ## Approach & Efficiency
 <!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
