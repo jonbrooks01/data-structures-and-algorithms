@@ -47,13 +47,13 @@ class LinkedList {
   includes(value) {
     let current = this.head;
     while (current) {
-      if(current.value === value) {
-      return true;
+      if (current.value === value) {
+        return true;
       }
       current = current.next;
     }
     return false;
-  };
+  }
   // toString
   // "{ a } -> { b } -> { c } -> NULL"
   toString() {
@@ -85,11 +85,10 @@ class LinkedList {
       let current = this.head;
       while (current.next !== null) {
         current = current.next;
-      };
-      current.next = newNode
-    };
-  };
-
+      }
+      current.next = newNode;
+    }
+  }
 
   // insert before
   // arguments: value, new value
@@ -101,7 +100,7 @@ class LinkedList {
   insertBefore(value, newValue) {
     const newNode = new Node(newValue);
 
-    if (!this.head) this.head = newNode
+    if (!this.head) this.head = newNode;
 
     if (this.head.value === value) {
       newNode.next = this.head;
@@ -116,42 +115,73 @@ class LinkedList {
         current.next = newNode;
         return;
       } else {
-      current = current.next;
+        current = current.next;
       }
     }
-
-    }
-    //insert after
-    // arguments: value, new value
-    //adds a new node with the given new value immediately after the first node that has the value specified
-    // assign head to current
-    // check current.value to see if it matches the argument
-    //temp is the current.next
-    // current.next is the new node
-    // new node.next is temp
-    // return list
-  insertAfter( value, newValue) {
+  }
+  //insert after
+  // arguments: value, new value
+  //adds a new node with the given new value immediately after the first node that has the value specified
+  // assign head to current
+  // check current.value to see if it matches the argument
+  //temp is the current.next
+  // current.next is the new node
+  // new node.next is temp
+  // return list
+  insertAfter(value, newValue) {
     const newNode = new Node(newValue);
 
     if (!this.head) this.head = newNode;
 
-
-      let current = this.head;
-      while(current !== null) {
-        if (current.value === value) {
-          const temp = current.next;
-          current.next = newNode;
-          newNode.next = temp;
-          return;
-        } else {
+    let current = this.head;
+    while (current !== null) {
+      if (current.value === value) {
+        const temp = current.next;
+        current.next = newNode;
+        newNode.next = temp;
+        return;
+      } else {
         current = current.next;
-        }
-      };
+      }
+    }
+  }
+}
+function zipLists(list1, list2) {
+  if (!list1 || !list1.head) return list2;
+  if (!list2 || !list2.head) return list1;
 
-  };
-  };
+  let current1 = list1.head;
+  let current2 = list2.head;
 
+  while (current1 !== null && current2 !== null) {
+    next1 = current1.next;
+    next2 = current2.next;
 
+    current1.next = current2;
+    current2.next = next1;
 
+    current1 = next1;
+    current2 = next2;
+  }
 
-module.exports = { LinkedList, Node };
+  if (current2 !== null) {
+    current1.next = current2;
+    list1.head = list2.head;
+    list2.head = current2;
+  }
+
+  return list1;
+}
+// let current1 = list1.head;
+// let current2 = list2.head;
+// let temp = current2.next;
+
+// while (current1 && temp) {
+//   current2.next = current1.next;
+//   current1.next = current2;
+//   current1 = current2.next;
+//   current2 = temp;
+//   temp = current2.next;
+// }
+
+module.exports = { LinkedList, Node, zipLists };
