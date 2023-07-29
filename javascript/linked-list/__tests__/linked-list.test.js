@@ -1,6 +1,7 @@
 "use strict";
 
 const { LinkedList, zipLists } = require("../linkedList.js");
+
 // "{ a } -> { b } -> { c } -> NULL"
 const dummyLL = {
   value: "a",
@@ -11,6 +12,10 @@ const dummyLL = {
       next: null,
     },
   },
+};
+const newDummyLL = {
+  value: 12,
+  next: null,
 };
 
 const dummyLL1 = {
@@ -141,6 +146,27 @@ describe("linked list test suite", () => {
       "{ a } -> { 1 } -> { b } -> { c } -> { 2 } -> { d } -> { z } -> { y } -> { r } -> { p } -> NULL"
     );
   });
+
+  test("Should return null where k is greater than the length of the linked list", () => {
+    const testLongerThenList = new LinkedList(dummyLL);
+    expect(testLongerThenList.kthFromEnd(10)).toBeNull();
+  });
+  test("Should return null where k and the length of the list are the same", () => {
+    const equalLength = new LinkedList(dummyLL);
+    expect(equalLength.kthFromEnd(10)).toBeNull();
+  });
+  test("Should return null where k is not a positive integer", () => {
+    const notPosInt = new LinkedList(dummyLL);
+    expect(notPosInt.kthFromEnd(-5)).toBeNull();
+  });
+  test("Should return null where the linked list is of a size 1 and k = 0", () => {
+    const sizeOfOne = new LinkedList(newDummyLL);
+    expect(sizeOfOne.kthFromEnd(0)).toBe(12);
+  });
+  test("Should return the correct value of k in the middle of the list", () => {
+    const middleNum = new LinkedList(dummyLL);
+    expect(middleNum.kthFromEnd(5)).toBe(2);
+  });
   test("Test with two empty linked lists", () => {
     const list1 = new LinkedList();
     const list2 = new LinkedList();
@@ -215,4 +241,3 @@ describe("linked list test suite", () => {
 //   it('works', () => {
 //     expect(true).toBeTruthy();
 //   });
-// });
