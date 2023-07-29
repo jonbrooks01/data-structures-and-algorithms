@@ -150,30 +150,38 @@ function zipLists(list1, list2) {
   if (!list1 || !list1.head) return list2;
   if (!list2 || !list2.head) return list1;
 
-  const mergedList = new LinkedList();
-
   let current1 = list1.head;
   let current2 = list2.head;
 
   while (current1 !== null && current2 !== null) {
-    mergedList.append(current1.value);
-    mergedList.append(current2.value);
+    next1 = current1.next;
+    next2 = current2.next;
 
-    current1 = current1.next;
-    current2 = current2.next;
-  }
+    current1.next = current2;
+    current2.next = next1;
 
-  if (current1 !== null) {
-    mergedList.append(current1.value);
-    current1 = current1.next;
+    current1 = next1;
+    current2 = next2;
   }
 
   if (current2 !== null) {
-    mergedList.append(current2.value);
-    current2 = current2.next;
+    current1.next = current2;
+    list1.head = list2.head;
+    list2.head = current2;
   }
 
-  return mergedList;
+  return list1;
 }
+// let current1 = list1.head;
+// let current2 = list2.head;
+// let temp = current2.next;
+
+// while (current1 && temp) {
+//   current2.next = current1.next;
+//   current1.next = current2;
+//   current1 = current2.next;
+//   current2 = temp;
+//   temp = current2.next;
+// }
 
 module.exports = { LinkedList, Node, zipLists };

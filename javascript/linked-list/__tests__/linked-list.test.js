@@ -35,6 +35,41 @@ const dummyLL2 = {
   },
 };
 
+const dummyLL3 = {
+  value: "2",
+  next: {
+    value: "4",
+    next: {
+      value: "8",
+      next: {
+        value: "9",
+        next: null,
+      },
+    },
+  },
+};
+
+function createLinkedListFromObject(dummyLL) {
+  class ListNode {
+    constructor(value, next = null) {
+      this.value = value;
+      this.next = next;
+    }
+  }
+
+  let head = new ListNode(dummyLL.value);
+  let current = head;
+  let dummyLLNext = dummyLL.next;
+
+  while (dummyLLNext !== null) {
+    current.next = new ListNode(dummyLLNext.value);
+    current = current.next;
+    dummyLLNext = dummyLLNext.next;
+  }
+
+  return new LinkedList(head);
+}
+
 describe("linked list test suite", () => {
   test("Can successfully instantiate an empty linked list", () => {
     const list = new LinkedList();
@@ -118,30 +153,56 @@ describe("linked list test suite", () => {
     expect(results.head).toBe(list2.head);
   });
   test("Test with two linked lists of the same length", () => {
-    const list1 = new LinkedList(dummyLL1);
-    const list2 = new LinkedList(dummyLL2);
+    const list1 = createLinkedListFromObject(dummyLL1);
+    const list2 = createLinkedListFromObject(dummyLL2);
     const results = zipLists(list1, list2);
-    expect(results.head).toEqual(
-      new LinkedList({
-        value: "3",
+    const expected = createLinkedListFromObject({
+      value: "3",
+      next: {
+        value: "7",
         next: {
-          value: "7",
+          value: "8",
           next: {
-            value: "8",
+            value: "1",
             next: {
-              value: "1",
+              value: "4",
               next: {
-                value: "4",
+                value: "5",
+                next: null,
+              },
+            },
+          },
+        },
+      },
+    });
+    expect(results.head).toEqual(expected.head);
+  });
+  test("Test with two linked list of different lengths", () => {
+    const list1 = createLinkedListFromObject(dummyLL3);
+    const list2 = createLinkedListFromObject(dummyLL2);
+    const results = zipLists(list1, list2);
+    const expected = createLinkedListFromObject({
+      value: "2",
+      next: {
+        value: "7",
+        next: {
+          value: "4",
+          next: {
+            value: "1",
+            next: {
+              value: "8",
+              next: {
+                value: "5",
                 next: {
-                  value: "5",
+                  value: "9",
                   next: null,
                 },
               },
             },
           },
         },
-      })
-    );
+      },
+    });
   });
 });
 
