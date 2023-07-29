@@ -146,7 +146,6 @@ class LinkedList {
     }
   }
 
-
   // k-th value
   // takes in a value to find starting from the end traversing until it finds that number.
   // once number
@@ -199,7 +198,6 @@ module.exports = { LinkedList, Node };
 //   return current.value;
 // }
 
-}
 function zipLists(list1, list2) {
   if (!list1 || !list1.head) return list2;
   if (!list2 || !list2.head) return list1;

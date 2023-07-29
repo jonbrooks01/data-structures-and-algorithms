@@ -1,6 +1,5 @@
 "use strict";
 
-
 const { LinkedList, zipLists } = require("../linkedList.js");
 
 // "{ a } -> { b } -> { c } -> NULL"
@@ -167,7 +166,7 @@ describe("linked list test suite", () => {
   test("Should return the correct value of k in the middle of the list", () => {
     const middleNum = new LinkedList(dummyLL);
     expect(middleNum.kthFromEnd(5)).toBe(2);
-
+  });
   test("Test with two empty linked lists", () => {
     const list1 = new LinkedList();
     const list2 = new LinkedList();
@@ -242,4 +241,3 @@ describe("linked list test suite", () => {
 //   it('works', () => {
 //     expect(true).toBeTruthy();
 //   });
-// });
