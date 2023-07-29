@@ -145,6 +145,60 @@ class LinkedList {
       }
     }
   }
+
+
+  // k-th value
+  // takes in a value to find starting from the end traversing until it finds that number.
+  // once number
+  kthFromEnd(k) {
+    if (!this.head || k < 0) {
+      return null;
+    }
+
+    let fastPass = this.head;
+    let slowPass = this.head;
+
+    for (let i = 0; i < k; i++) {
+      if (!fastPass.next) {
+        return null;
+      }
+      fastPass = fastPass.next;
+    }
+
+    while (fastPass.next) {
+      fastPass = fastPass.next;
+      slowPass = slowPass.next;
+    }
+    return slowPass.value;
+  }
+}
+
+module.exports = { LinkedList, Node };
+
+// kthFromEnd(k) {
+//   if (!this.head || k < 0) {
+//     return null;
+//   }
+
+//   let length = 0;
+//   let current = this.head;
+//   while (current) {
+//     length++;
+//     current = current.next;
+//   }
+
+//   if (k >= length) {
+//     return null;
+//   }
+
+//   let traverse = length - k - 1;
+//   current = this.head;
+//   for (let i = 0; i < traverse; i++) {
+//     current = current.next;
+//   }
+//   return current.value;
+// }
+
 }
 function zipLists(list1, list2) {
   if (!list1 || !list1.head) return list2;
