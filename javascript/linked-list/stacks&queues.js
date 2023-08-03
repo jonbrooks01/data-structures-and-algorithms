@@ -6,8 +6,8 @@ class Node {
 }
 
 class Stack {
-  constructor() {
-    this.top = null;
+  constructor(top = null) {
+    this.top = top;
   }
 
   push(value) {
@@ -34,17 +34,22 @@ class Stack {
   }
 
   isEmpty() {
-    return this.top === null;
+    return Boolean(!this.top);
   }
 }
 
 class Queue {
-  constructor() {
-    this.front = null;
+  constructor(front = null) {
+    this.front = front;
   }
 
   enqueue(value) {
     const newNode = new Node(value);
+    if (this.isEmpty()) {
+      this.front = newNode;
+      this.rear = newNode;
+      return;
+    }
     this.rear.next = newNode;
     this.rear = newNode;
   }
@@ -55,6 +60,9 @@ class Queue {
     }
     const dequeueValue = this.front.value;
     this.front = this.front.next;
+    if (!this.front) {
+      this.rear = null;
+    }
     return dequeueValue;
   }
 
@@ -66,7 +74,7 @@ class Queue {
   }
 
   isEmpty() {
-    return this.front === null;
+    return Boolean(!this.top);
   }
 }
 
