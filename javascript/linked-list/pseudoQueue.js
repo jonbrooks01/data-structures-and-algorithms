@@ -34,12 +34,32 @@ const { Stack } = require("./stacks&queues.js");
 //   }
 // }
 
+// transfer() {
+//   while (this.in.top) {
+//     const temp = this.in.pop();
+//     this.out.push(temp.value);
+//   }
+// }
+
+// enqueue(value) {
+//   this.in.push(value);
+// }
+
+// dequeue() {
+//   if (this.out.top) {
+//     return this.out.pop();
+//   }
+//   if (this.in.top) {
+//     transfer();
+//     return this.out.pop();
+//   }
+//   return null;
+// }
 class PseudoQueue {
   constructor() {
     this.stack1 = new Stack();
     this.stack2 = new Stack();
   }
-
   enqueue(value) {
     while (!this.stack2.isEmpty()) {
       this.stack1.push(this.stack2.pop());
