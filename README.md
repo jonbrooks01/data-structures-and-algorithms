@@ -27,3 +27,5 @@ Link to Code challenge Two [README](./javascript/array-insert-shift/README.md)
 Link to Code challenge Three [README](./javascript/array-binary-search/README.md)
 
 Link to Code challenge Five [README](./javascript/linked-list/README.md)
+
+Link to Code challenge Fifteen [README](./javascript//trees/binary-search.md)
