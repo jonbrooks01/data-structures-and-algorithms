@@ -4,7 +4,7 @@ This code challenge was to implement a binary  tree and traverse it using pre-or
 
 ## Whiteboard Process
 <!-- Embedded whiteboard image -->
-
+![In-Order](./tree.png)
 ## Approach & Efficiency
 <!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
 
