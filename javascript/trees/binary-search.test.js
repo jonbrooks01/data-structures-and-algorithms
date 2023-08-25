@@ -63,4 +63,14 @@ describe(" Binary Tree Functionality", () => {
     bst.add(15);
     expect(bst.contains(7)).toBe(false);
   });
+
+  test("returns the max value in a stack", () => {
+    bst.add(10);
+    bst.add(5);
+    bst.add(15);
+    bst.add(3);
+    bst.add(7);
+    bst.findMax();
+    expect(bst.findMax()).toBe(15);
+  });
 });
