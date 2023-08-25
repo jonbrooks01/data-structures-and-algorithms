@@ -95,6 +95,49 @@ class BinarySearchTree extends BinaryTree {
     }
     return false;
   }
+  findMax() {
+    if (!this.root) {
+      throw new Error("Tree is empty");
+    }
+
+    return this._findMaxValue(this.root);
+  }
+  _findMaxValue(node) {
+    if (!node) {
+      return Number.NEGATIVE_INFINITY;
+    }
+
+    const currentValue = node.value;
+    const leftMax = this._findMaxValue(node.left);
+    const rightMax = this._findMaxValue(node.right);
+
+    return Math.max(currentValue, leftMax, rightMax);
+  }
 }
+
+// findMax() { NON-Recursive
+//   if (!this.root) {
+//     throw new Error("Tree is empty");
+//   }
+
+//   let maxValue = Number.NEGATIVE_INFINITY;
+
+//   const stack = [this.root];
+
+//   while (stack.length > 0) {
+//     const node = stack.pop();
+//     maxValue = Math.max(maxValue, node.value);
+
+//     if (node.left) {
+//       stack.push(node.left);
+//     }
+
+//     if (node.right) {
+//       stack.push(node.right);
+//     }
+//   }
+
+//   return maxValue;
+// }
 
 module.exports = { BinarySearchTree, Node };
