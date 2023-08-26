@@ -5,6 +5,7 @@ Find the Maximum Value in a Binary Tree
 ## Whiteboard Process
 <!-- Embedded whiteboard image -->
 ![In-Order](./maxV.png)
+![White Board](./maxVal-whiteboard.png)
 ## Approach & Efficiency
 <!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
 
