@@ -73,6 +73,29 @@ class PseudoQueue {
     }
     return this.stack2.pop();
   }
+
+  validateBrackets(str) {
+    const stack1 = [];
+    const openingBrackets = ["(", "[", "{"];
+    const closingBrackets = [")", "]", "}"];
+    const bracketPairs = {
+      "(": ")",
+      "[": "]",
+      "{": "}",
+    };
+
+    for (let character of str) {
+      if (openingBrackets.includes(character)) {
+        stack1.push(character);
+      } else if (closingBrackets.includes(character)) {
+        const lastOpeningBracket = stack1.pop();
+        if (bracketPairs[lastOpeningBracket] !== character) {
+          return false;
+        }
+      }
+    }
+    return stack1.length === 0;
+  }
 }
 
 module.exports = PseudoQueue;

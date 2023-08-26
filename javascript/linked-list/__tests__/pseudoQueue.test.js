@@ -36,4 +36,24 @@ describe("pseudoQueue", () => {
       );
     });
   });
+  it("should verify if there is are  balanced opening and closing brackets ", () => {
+    expect(pseudoQueue.validateBrackets("()")).toBe(true);
+    expect(pseudoQueue.validateBrackets("[]")).toBe(true);
+    expect(pseudoQueue.validateBrackets("{}")).toBe(true);
+    expect(pseudoQueue.validateBrackets("[{()}]")).toBe(true);
+    expect(pseudoQueue.validateBrackets("{[()]}")).toBe(true);
+    expect(pseudoQueue.validateBrackets("[{}{}()]")).toBe(true);
+  });
+  it("should return false for unbalanced brackets", () => {
+    expect(pseudoQueue.validateBrackets("(")).toBe(false);
+    expect(pseudoQueue.validateBrackets(")")).toBe(false);
+    expect(pseudoQueue.validateBrackets("[")).toBe(false);
+    expect(pseudoQueue.validateBrackets("]")).toBe(false);
+    expect(pseudoQueue.validateBrackets("{")).toBe(false);
+    expect(pseudoQueue.validateBrackets("}")).toBe(false);
+    expect(pseudoQueue.validateBrackets("[{)")).toBe(false);
+    expect(pseudoQueue.validateBrackets("{[)]")).toBe(false);
+    expect(pseudoQueue.validateBrackets("([)]")).toBe(false);
+    expect(pseudoQueue.validateBrackets("{[}]")).toBe(false);
+  });
 });
