@@ -1,5 +1,31 @@
 const { BinarySearchTree, Node } = require("./binary-search");
 
+const tree = {
+  value: 1,
+  left: {
+    value: 2,
+    left: {
+      value: 4,
+      left: null,
+      right: null,
+    },
+    right: {
+      value: 5,
+      left: null,
+      right: null,
+    },
+  },
+  right: {
+    value: 3,
+    left: {
+      value: 6,
+      left: null,
+      right: null,
+    },
+    right: null,
+  },
+};
+
 describe(" Binary Tree Functionality", () => {
   let bst;
 
@@ -72,5 +98,14 @@ describe(" Binary Tree Functionality", () => {
     bst.add(7);
     bst.findMax();
     expect(bst.findMax()).toBe(15);
+  });
+
+  test("returns an empty array", () => {
+    bst.breadthFirst();
+    expect(bst.breadthFirst()).toEqual(expect.arrayContaining([]));
+  });
+  test("Successfully traverses an array with breadthFirst", () => {
+    const results = bst.breadthFirst(tree);
+    expect(results).toEqual([1, 2, 3, 4, 5, 6]);
   });
 });

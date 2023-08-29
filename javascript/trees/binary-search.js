@@ -113,6 +113,26 @@ class BinarySearchTree extends BinaryTree {
 
     return Math.max(currentValue, leftMax, rightMax);
   }
+  breadthFirst(tree) {
+    if (!tree) {
+      return [];
+    }
+    const queue = [tree];
+    const results = [];
+
+    while (queue.length > 0) {
+      const node = queue.shift();
+      results.push(node.value);
+
+      if (node.left) {
+        queue.push(node.left);
+      }
+      if (node.right) {
+        queue.push(node.right);
+      }
+    }
+    return results;
+  }
 }
 
 // findMax() { NON-Recursive
