@@ -15,7 +15,7 @@ function traversal() {
   }
 }
 
-function fizzBuzzTree(root) {
+function fizzBuzz(root) {
   if (!root) {
     return null;
   }
@@ -23,7 +23,7 @@ function fizzBuzzTree(root) {
   const newRoot = new Node(convertValue(root.value));
 
   for (const child of root.children) {
-    newRoot.children.push(fizzBuzzTree(child));
+    newRoot.children.push(fizzBuzz(child));
   }
 
   return newRoot;
@@ -40,3 +40,5 @@ function convertValue(value) {
     return value.toString();
   }
 }
+
+module.exports = { fizzBuzz, Node };
