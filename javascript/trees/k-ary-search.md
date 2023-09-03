@@ -4,8 +4,8 @@ Determine whether or not the value of each node is divisible by 3, 5 or both. Cr
 
 ## Whiteboard Process
 <!-- Embedded whiteboard image -->
-<!-- ![In-Order](./maxV.png)
-![White Board](./maxVal-whiteboard.png) -->
+![WhiteBoard](./k-ary.png)
+
 ## Approach & Efficiency
 <!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
 
