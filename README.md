@@ -33,3 +33,5 @@ Link to Code challenge Fifteen [README](./javascript//trees/binary-search.md)
 Link to Code challenge Seventeen [README](./javascript/trees/breadthFirst.md)
 
 Link to Code challenge Eighteen [README](./javascript//trees/k-ary-search.md)
+
+Link to Code challenge Eighteen [README](./javascript/hashTable/README.md)
