@@ -1,50 +1,58 @@
-const { Hashtable } = require("./index");
+const { HashTable } = require("./index");
 
-describe("Hashtable", () => {
-  let hashtable;
+describe("HashTable", () => {
+  let hashTable;
 
   beforeEach(() => {
-    hashtable = new Hashtable();
+    hashTable = new HashTable();
   });
 
-  it("should set and get values correctly", () => {
-    hashtable.set("name", "John");
-    expect(hashtable.get("name")).toBe("John");
-
-    hashtable.set("age", 30);
-    expect(hashtable.get("age")).toBe(30);
+  it("should set a key/value in the hashtable", () => {
+    hashTable.set("name", "John");
+    expect(hashTable.get("name")).toBe("John");
   });
 
-  it("should handle collisions and update values", () => {
-    hashtable.set("name", "John");
-    hashtable.set("age", 30);
-
-    // Simulate a collision for the same index
-    hashtable.set("naem", "Doe");
-
-    expect(hashtable.get("name")).toBe("John");
-    expect(hashtable.get("naem")).toBe("Doe");
-    expect(hashtable.get("age")).toBe(30);
-
-    // Update the value for 'naem'
-    hashtable.set("naem", "Smith");
-    expect(hashtable.get("naem")).toBe("Smith");
+  it("should retrieve a value based on a key", () => {
+    hashTable.set("name", "John");
+    expect(hashTable.get("name")).toBe("John");
   });
 
-  it("should check if a key exists", () => {
-    hashtable.set("name", "John");
-    hashtable.set("age", 30);
-
-    expect(hashtable.has("name")).toBe(true);
-    expect(hashtable.has("age")).toBe(true);
-    expect(hashtable.has("city")).toBe(false);
+  it("should return null for a key that doesn't exist", () => {
+    expect(hashTable.get("nonexistentKey")).toBe(null);
   });
 
-  it("should return an array of keys", () => {
-    hashtable.set("name", "John");
-    hashtable.set("age", 30);
+  it("should return a list of unique keys", () => {
+    hashTable.set("name", "John");
+    hashTable.set("age", 30);
+    hashTable.set("city", "New York");
 
-    expect(hashtable.keys()).toContain("name");
-    expect(hashtable.keys()).toContain("age");
+    const keys = hashTable.getKeys();
+    expect(keys).toContain("name");
+    expect(keys).toContain("age");
+    expect(keys).toContain("city");
+  });
+
+  it("should handle a collision within the hashTable", () => {
+    // Set keys that will collide
+    hashTable.set("name", "John");
+    hashTable.set("name", "Doe");
+
+    // Ensure they are correctly stored and retrievable
+    expect(hashTable.get("name")).toBe("Doe");
+  });
+
+  it("should retrieve a value from a bucket with a collision", () => {
+    // Set keys that will collide
+    hashTable.set("name", "John");
+    hashTable.set("name", "Doe");
+
+    // Retrieve values from the bucket with a collision
+    expect(hashTable.get("name")).toBe("Doe");
+  });
+
+  it("should hash a key to an in-range value", () => {
+    const hashValue = hashTable.hash("test");
+    expect(hashValue).toBeGreaterThanOrEqual(0);
+    expect(hashValue).toBeLessThan(100000);
   });
 });

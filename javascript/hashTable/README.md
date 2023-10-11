@@ -1,5 +1,6 @@
-# Challenge Title
+# Code Challenge: Class 30: Hash Table Implementation
 <!-- Description of the challenge -->
+Implement a HashTable Class with the following methods: set,get,has,keys and hash
 
 ## Whiteboard Process
 <!-- Embedded whiteboard image -->
