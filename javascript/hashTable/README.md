@@ -4,6 +4,7 @@ Implement a HashTable Class with the following methods: set,get,has,keys and has
 
 ## Whiteboard Process
 <!-- Embedded whiteboard image -->
+![WhiteBoard](./whiteBoard.png)
 
 ## Approach & Efficiency
 <!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
