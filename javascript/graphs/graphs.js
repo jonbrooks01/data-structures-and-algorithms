@@ -87,6 +87,30 @@ class Graph {
   size() {
     return this.adjacencyList.size;
   }
+
+  breadthFirst(node) {
+    const visited = new Set();
+    const queue = [node];
+    const result = [];
+
+    visited.add(node);
+
+    while (queue.length > 0) {
+      const currentNode = queue.shift();
+      result.push(currentNode);
+
+      const neighbors = this.adjacencyList.get(currentNode);
+
+      for (const neighbor of neighbors) {
+        if (!visited.has(neighbor)) {
+          visited.add(neighbor);
+          queue.push(neighbor);
+        }
+      }
+      console.log(result);
+      return result;
+    }
+  }
 }
 
 module.exports = Graph;
