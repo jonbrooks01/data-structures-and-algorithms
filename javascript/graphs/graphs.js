@@ -111,6 +111,20 @@ class Graph {
       return result;
     }
   }
+  depthFirst(node) {
+    const result = [];
+
+    function traverse(node) {
+      result.push(node.value);
+
+      for (const child of node.children) {
+        traverse(child);
+      }
+    }
+
+    traverse(node);
+    return result;
+  }
 }
 
 module.exports = Graph;
