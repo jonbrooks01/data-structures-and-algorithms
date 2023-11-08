@@ -4,7 +4,7 @@ Conduct a depth first pre-order traversal on a graph
 
 ## Whiteboard Process
 <!-- Embedded whiteboard image -->
-<!-- ![whiteBoard](./whiteBoard1.png) -->
+![whiteBoard](./depthFirst.png)
 
 ## Approach & Efficiency
 <!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
